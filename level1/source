@@ -1,0 +1,12 @@
+void run(void)
+{
+	puts("Something\n");
+	system("/bin/sh");
+}
+
+int main(void)
+{
+	char buff[72];
+	gets(buff);
+	return (0);
+}
