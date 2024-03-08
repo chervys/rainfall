@@ -1,5 +1,8 @@
 ## level3
 
+We need to set the value at 0x0804988c to 0x40. To do so, we exploit `printf`
+to make him write this value to this adress with `%n`.
+
 ### Useful infos:
 ```
 0x218 = 536
