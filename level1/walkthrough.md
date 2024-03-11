@@ -1,4 +1,4 @@
-## level1
+# level1
 
 For this level, we use a stack buffer overflow attack on `gets()`
 to modify the value on the stack of the function pointer the main will

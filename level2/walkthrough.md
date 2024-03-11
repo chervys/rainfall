@@ -1,6 +1,10 @@
-## level2
+# level2
 
-Useful infos:
+We can redirect the execution of the `ret` of the `p` function to `system` (in the libc).
+But there is a check that prevents us from using the address of `system` directly, so
+we ret to a `ret` that will ret to `system` with argument "/bin/sh" (found in the libc as well).
+
+## Useful infos:
 ```
 0x68 = 104
 0x4c = 76
@@ -25,7 +29,3 @@ gets string start
 old ebp
 p ret pointer
 ```
-
-We can redirect the execution of the `ret` of the `p` function to `system` (in the libc).
-But there is a check that prevents us from using the address of `system` directly, so
-we ret to a `ret` that will ret to `system` with argument "/bin/sh" (found in the libc as well).
