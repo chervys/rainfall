@@ -1,0 +1,47 @@
+void p(char *param_1,char *param_2)
+{
+	char *pcVar1;
+	char local_100c [4104];
+	
+	puts(param_2);
+	read(0,local_100c,0x1000);
+	pcVar1 = strchr(local_100c,10);
+	*pcVar1 = '\0';
+	strncpy(param_1,local_100c,0x14);
+	return;
+}
+
+void pp(char *param_1)
+{
+	char cVar1;
+	uint uVar2;
+	char *tmp_str;
+	byte bVar4;
+	char str1 [20];
+	char str2 [20];
+
+	bVar4 = 0;
+	p(str1,&DAT_080486a0);
+	p(str2,&DAT_080486a0);
+	strcpy(param_1,str1);
+	uVar2 = 0xffffffff;
+	tmp_str = param_1;
+	do {
+		if (uVar2 == 0) break;
+		uVar2 = uVar2 - 1;
+		cVar1 = *tmp_str;
+		tmp_str = tmp_str + 1;
+	} while (cVar1 != '\0');
+	*(undefined2 *)(param_1 + (~uVar2 - 1)) = '0x20'; // ' '
+	strcat(param_1,str2);
+	return;
+}
+
+undefined4 main(void)
+{
+	char local_3a [54];
+	
+	pp(local_3a);
+	puts(local_3a);
+	return 0;
+}
