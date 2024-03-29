@@ -1,5 +1,10 @@
 # bonus0
 
+For this exploit, we can overwrite the ret value but we can't do a ret2libc
+(can't overwrite the stack enough) and don't have enough room on the stack
+for a nopslide. The solution is to put our shellcode in an env variable which
+gives us plenty of room for a big ass nop slide.
+
 ## Useful infos
 
 max string we can write: `AAAABBBBCCCCDDDDEEEE1111222233334444555 1111222233334444555`
