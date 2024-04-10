@@ -1,4 +1,4 @@
-level9@RainFall:~$ objdump -drwC -Mintel level9 
+level9@RainFall:~$ objdump -dC -M intel level9
 
 level9:     file format elf32-i386
 
@@ -164,14 +164,16 @@ Disassembly of section .text:
  8048610:       c7 04 24 6c 00 00 00    mov    DWORD PTR [esp],0x6c
  8048617:       e8 14 ff ff ff          call   8048530 <operator new(unsigned int)@plt>
  804861c:       89 c3                   mov    ebx,eax
- 804861e:       c7 44 24 04 05 00 00 00         mov    DWORD PTR [esp+0x4],0x5
+ 804861e:       c7 44 24 04 05 00 00    mov    DWORD PTR [esp+0x4],0x5
+ 8048625:       00 
  8048626:       89 1c 24                mov    DWORD PTR [esp],ebx
  8048629:       e8 c8 00 00 00          call   80486f6 <N::N(int)>
  804862e:       89 5c 24 1c             mov    DWORD PTR [esp+0x1c],ebx
  8048632:       c7 04 24 6c 00 00 00    mov    DWORD PTR [esp],0x6c
  8048639:       e8 f2 fe ff ff          call   8048530 <operator new(unsigned int)@plt>
  804863e:       89 c3                   mov    ebx,eax
- 8048640:       c7 44 24 04 06 00 00 00         mov    DWORD PTR [esp+0x4],0x6
+ 8048640:       c7 44 24 04 06 00 00    mov    DWORD PTR [esp+0x4],0x6
+ 8048647:       00 
  8048648:       89 1c 24                mov    DWORD PTR [esp],ebx
  804864b:       e8 a6 00 00 00          call   80486f6 <N::N(int)>
  8048650:       89 5c 24 18             mov    DWORD PTR [esp+0x18],ebx
@@ -209,8 +211,10 @@ Disassembly of section .text:
  80486af:       c7 04 24 b4 9b 04 08    mov    DWORD PTR [esp],0x8049bb4
  80486b6:       e8 15 fe ff ff          call   80484d0 <std::ios_base::Init::Init()@plt>
  80486bb:       b8 00 85 04 08          mov    eax,0x8048500
- 80486c0:       c7 44 24 08 78 9b 04 08         mov    DWORD PTR [esp+0x8],0x8049b78
- 80486c8:       c7 44 24 04 b4 9b 04 08         mov    DWORD PTR [esp+0x4],0x8049bb4
+ 80486c0:       c7 44 24 08 78 9b 04    mov    DWORD PTR [esp+0x8],0x8049b78
+ 80486c7:       08 
+ 80486c8:       c7 44 24 04 b4 9b 04    mov    DWORD PTR [esp+0x4],0x8049bb4
+ 80486cf:       08 
  80486d0:       89 04 24                mov    DWORD PTR [esp],eax
  80486d3:       e8 d8 fd ff ff          call   80484b0 <__cxa_atexit@plt>
  80486d8:       c9                      leave  
@@ -220,7 +224,8 @@ Disassembly of section .text:
  80486da:       55                      push   ebp
  80486db:       89 e5                   mov    ebp,esp
  80486dd:       83 ec 18                sub    esp,0x18
- 80486e0:       c7 44 24 04 ff ff 00 00         mov    DWORD PTR [esp+0x4],0xffff
+ 80486e0:       c7 44 24 04 ff ff 00    mov    DWORD PTR [esp+0x4],0xffff
+ 80486e7:       00 
  80486e8:       c7 04 24 01 00 00 00    mov    DWORD PTR [esp],0x1
  80486ef:       e8 a6 ff ff ff          call   804869a <__static_initialization_and_destruction_0(int, int)>
  80486f4:       c9                      leave  
@@ -389,4 +394,4 @@ Disassembly of section .fini:
  804882c:       e8 3f fd ff ff          call   8048570 <__do_global_dtors_aux>
  8048831:       83 c4 08                add    esp,0x8
  8048834:       5b                      pop    ebx
- 8048835:       c3                      ret  
+ 8048835:       c3                      ret    
