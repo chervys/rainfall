@@ -1,5 +1,11 @@
 # level 0
 
+## get_binary
+
+```shell
+scp -P 4242 level0@192.168.0.0:/home/user/level0/level0 level0
+```
+
 ## exploit
 
 ```shell
