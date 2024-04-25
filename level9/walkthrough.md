@@ -91,9 +91,11 @@ Program received signal SIGSEGV, Segmentation fault.
 0x804a0a8:	0x00000000	0x00000000
 ```
 
+```
 First address       : `0x804a008 + 4` --> `0x804a00c` --> "\x0c\xa0\x04\x08"
 Second address      : `0x804a008 + 8` --> `0x804a010` --> "\x50\x88\x04\x08"
 Segfault's address	: `0x804a078`
+```
 
 
 ## exploit
