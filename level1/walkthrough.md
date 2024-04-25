@@ -3,6 +3,7 @@
 ## disassemble
 
 ```shell
+# objdump --disassemble --demangle --disassembler-options intel bonus0
 objdump -dC -M intel level1
 ```
 
