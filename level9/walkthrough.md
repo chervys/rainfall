@@ -4,7 +4,6 @@
 
 ```shell
 objdump -dC -M intel level9 > source.txt
-# objdump --disassemble --demangle --disassembler-options intel level9 > source.txt
 ```
 
 ## find_a_vulnerability
