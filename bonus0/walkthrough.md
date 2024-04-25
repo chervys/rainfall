@@ -1,16 +1,9 @@
 # bonus0
 
-## get_binaire
-
-```shell
-scp -P 4242 bonus0@192.168.0.0:/home/user/bonus0/bonus0 bonus0
-```
-
 ## disassemble
 
 ```shell
 objdump -dC -M intel bonus0
-# objdump --disassemble --demangle --disassembler-options intel bonus0
 ```
 
 ## exploit
