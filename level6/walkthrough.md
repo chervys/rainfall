@@ -9,9 +9,12 @@ objdump -dC -M intel level5
 ## With GDB
 
 ```shell
-# 80484ca:       8b 44 24 18             mov    eax,DWORD PTR [esp+0x18]
-# 80484ce:       8b 00                   mov    eax,DWORD PTR [eax]
+# [...]
 # 80484d0:       ff d0                   call   eax
+# [...]
+# 08048454 <n>:
+# [...]
+
 (gdb) break *0x80484d0
 (gdb) run x x
 (gdb) print $eax
