@@ -1,7 +1,7 @@
-void p(char *param_1)
+void p(char* param_1)
 {
-  printf(param_1);
-  return;
+    printf(param_1);
+    return;
 }
 
 void n(void)
@@ -10,8 +10,7 @@ void n(void)
 
     fgets(local_20c, 0x200, stdin);
     p(local_20c);
-    if (m == 0x1025544)
-    {
+    if (m == 0x1025544) {
         system("/bin/cat /home/user/level5/.pass");
     }
     return;
