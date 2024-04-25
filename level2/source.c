@@ -5,10 +5,9 @@ void p(void)
 
     fflush(stdout);
     gets(local_50);
-    if ((unaff_retaddr & 0xb0000000) == 0xb0000000)
-    {
+    if ((unaff_retaddr & 0xb0000000) == 0xb0000000) {
         printf("(%p)\n", unaff_retaddr);
-        /* WARNING: Subroutine does not return */
+        // WARNING: Subroutine does not return
         _exit(1);
     }
     puts(local_50);

